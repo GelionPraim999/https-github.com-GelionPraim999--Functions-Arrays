@@ -14,22 +14,18 @@ void main()
 	setlocale(LC_ALL, "");
 	const unsigned int n = 5;
 	int arr[n];
-	int sum = 0;
-	double avg = 0;
 	int min = 0;
 	int max = 0;
-	FillRand(arr, n);
-	Print(arr, n);
-	ReversePrint(arr,n);
-	double s = (double)Sum(arr, n);
-	cout << "Сумма элементов массива : " << s << endl;
+    FillRand(arr, n);
+	cout << "Исходный массив: \t\t "; Print(arr, n);
+	cout << "Вывод массива в обратном направлении: \t"; ReversePrint(arr, n);
+	cout << "Сумма элементов массива : " << Sum (arr,n)<< endl;
+	cout << "Среднее арефметическое элементов массива :\t" << Avg (arr, n)<< endl; 
+	cout << "Минимальное значение массива : \t " <<  minValueIn(arr, n, min)<< endl;
+	cout << "Максимальное значение массива : \t" << maxValueIn(arr, n, max)<< endl;
+	cout << "Массив в порядке возрастания :\t"; Sort(arr, n);
 	
-	cout << "Среднее арефметическое элементов массива :" << Avg (arr, n) << endl;
-	minValueIn(arr, n, min);
-	maxValueIn(arr, n, max);
-	Sort(arr, n);
-	cout << "Массив в порядке возрастания :" << endl;
-    Print(arr, n);
+	
 }
 void FillRand(int arr[], const unsigned int n)
 {
@@ -48,13 +44,7 @@ void Print(int arr[], const unsigned int n)
 }
 void ReversePrint(int arr[], const unsigned int n)
 {
-	for (int i = 0; i < n; ++i)
-	{
-		cout << arr[i] << "  \t";
-	}
-	cout << "\n";
-
-	for (int i = n - 1; i > 0; --i)
+	for (int i = n - 1; i >= 0; --i)
 	{
 		cout << arr[i] << "  \t";
 	}
@@ -93,16 +83,23 @@ double Avg(int arr[], const unsigned int n)
  }
  void Sort(int arr[], const unsigned int n)
  {
-	 for (int i = 1; i < n; i++)
+	 for (int i = 0; i < n; i++)
 	 {
-		 int tmp = arr[i];
-		 for (int j = i-1; j >= 0; j--)
+		
+		 for (int j = n-1; j > i; j--)
 		 {
-			 if (arr[j] > tmp)
+			 if (arr[j]  < arr[ j- 1])
 			 {
-				 arr[j + 1] = arr[j];
-				 arr[j] = tmp;
+				 int temp = arr[j];
+				 arr[j] = arr[j - 1];
+				 arr[j - 1 ] = temp;
 			 }
 		 }
 	 }
+	 for (int i = 0; i < n; i++)
+	 {
+		 cout << arr[i] << "\t";
+	 }
+	 cout << endl;
  }
+
